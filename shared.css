@@ -145,7 +145,16 @@ nav {
   text-decoration: none;
 }
 
-.work-item:hover { background: #fafafa; }
+.work-item:hover { background: #fafafa; cursor: pointer; }
+
+.work-item .work-arrow {
+  display: inline-block;
+  font-size: 0.75rem;
+  color: var(--grey-light);
+  margin-top: 1.5rem;
+  transition: color 0.2s, transform 0.2s;
+}
+.work-item:hover .work-arrow { color: var(--accent); transform: translateX(4px); }
 
 .work-image {
   background: #f0f0f0;
