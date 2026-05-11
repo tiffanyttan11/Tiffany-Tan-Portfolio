@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Tiffany Tan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.photo-strip {
+  width: 100%;
+  height: 420px;
+  background: #ececec;
+  border-bottom: 1px solid var(--grey-line);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+}
+
+.photo-strip img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.cred-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--grey-line);
+}
+
+.cred-col {
+  padding: 4rem 2.5rem;
+  border-right: 1px solid var(--grey-line);
+}
+
+.cred-col:last-child {
+  border-right: none;
+  padding-left: 3rem;
+}
+
+.inspo-section {
+  padding: 5rem 2.5rem;
+  border-bottom: 1px solid var(--grey-line);
+}
+
+.inspo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 2.5rem;
+}
+
+.inspo-cell {
+  background: #ececec;
+  aspect-ratio: 4/3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  overflow: hidden;
+}
+
+.inspo-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.inspo-caption {
+  font-size: 0.75rem;
+  color: var(--grey-mid);
+  font-weight: 300;
+  line-height: 1.7;
+  margin-top: 1.5rem;
+  max-width: 60ch;
+}
+
+@media (max-width: 768px) {
+  .photo-strip { height: 260px; }
+  .cred-section { grid-template-columns: 1fr; }
+  .cred-col { border-right: none; padding: 3rem 1.25rem; border-bottom: 1px solid var(--grey-line); }
+  .cred-col:last-child { padding-left: 1.25rem; border-bottom: none; }
+  .inspo-section { padding: 3rem 1.25rem; }
+  .inspo-grid { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Tiffany Tan</a>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header reveal">
+  <p class="page-header-eyebrow">About</p>
+  <h1 class="page-header-title">Tiffany Tan —<br><em>Tingting.</em></h1>
+</div>
+
+<!-- PHOTO -->
+<div class="photo-strip reveal">
+  <!-- Replace with: <img src="your-photo.jpg" alt="Tiffany Tan"> -->
+  Add portrait or studio photo
+</div>
+
+<!-- STATEMENT + BIO -->
+<div class="two-col">
+  <div class="col-left reveal">
+    <p class="section-eyebrow">In short</p>
+    <p class="about-statement">
+      I design for the moment someone picks something up and <em>understands it</em> without being told to.
+    </p>
+  </div>
+  <div class="col-right reveal">
+    <div class="about-body">
+      <p>Born in China, raised in the US — I've always lived between two worlds, and that shows up in my work as an instinct toward simplicity that still carries weight.</p>
+      <p>I grew up drawing people and making things by hand: furniture for dolls, portraits from observation, objects for the sake of making. Discovering industrial design gave that impulse a direction. Now I'm pursuing a BSD at ASU with a 3.9 GPA, designing across product, furniture, and branding.</p>
+      <p>My process always starts with research. Not to collect data — to find the gap between what something is and what it should feel like. The KFI project was chosen for production because it answered a real question, not because it looked impressive on a board.</p>
+      <p>I also speak Mandarin and bring a bicultural lens to briefs that deal with cross-cultural experience or emotional nuance. That's not a footnote — it's shaped how I see every brief I've worked on.</p>
+    </div>
+  </div>
+</div>
+
+<!-- CREDENTIALS -->
+<div class="cred-section">
+  <div class="cred-col reveal">
+    <p class="section-eyebrow">Recognition</p>
+    <ul class="cred-list">
+      <li class="cred-item">
+        <span class="cred-name">KFI Sponsored Project — Selected for Production <span class="pill">Industry</span></span>
+        <span class="cred-year">Fall 2025</span>
+      </li>
+      <li class="cred-item">
+        <span class="cred-name">Design Excellence Award — The Design School at ASU</span>
+        <span class="cred-year">Fall '24 · Sp '25 · Fall '25</span>
+      </li>
+      <li class="cred-item">
+        <span class="cred-name">Google Packaging Design Mentorship</span>
+        <span class="cred-year">Feb – Apr 2025</span>
+      </li>
+      <li class="cred-item">
+        <span class="cred-name">New American University Dean's Scholarship</span>
+        <span class="cred-year">2023 – ongoing</span>
+      </li>
+      <li class="cred-item">
+        <span class="cred-name">Herberger Institute Dean's List</span>
+        <span class="cred-year">2023 – ongoing</span>
+      </li>
+    </ul>
+
+    <div style="margin-top: 3rem;">
+      <p class="section-eyebrow">Education</p>
+      <ul class="cred-list">
+        <li class="cred-item">
+          <span class="cred-name">BSD Industrial Design — Arizona State University</span>
+          <span class="cred-year">2023 – ongoing · GPA 3.9</span>
+        </li>
+        <li class="cred-item">
+          <span class="cred-name">High School Diploma — ASU Prep Digital, Honors</span>
+          <span class="cred-year">2021 – 2023 · GPA 3.8</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="cred-col reveal">
+    <p class="section-eyebrow">Experience</p>
+    <ul class="cred-list">
+      <li class="cred-item">
+        <span class="cred-name">IDSA ASU Student Chapter — Treasurer</span>
+        <span class="cred-year">Aug 2024 – now</span>
+      </li>
+      <li class="cred-item">
+        <span class="cred-name">Freelance Designer — Brand + Visual Identity</span>
+        <span class="cred-year">Oct 2022 – now</span>
+      </li>
+    </ul>
+
+    <div style="margin-top: 3rem;">
+      <p class="section-eyebrow">Skills + Tools</p>
+      <div class="skills-block">
+        <div class="skill-group">
+          <span class="skill-cat">Research</span>
+          <span class="skill-items">User interviews · Trend analysis · Market research · Problem framing</span>
+        </div>
+        <div class="skill-group">
+          <span class="skill-cat">3D + CAD</span>
+          <span class="skill-items">SolidWorks · KeyShot · Physical prototyping</span>
+        </div>
+        <div class="skill-group">
+          <span class="skill-cat">Visual</span>
+          <span class="skill-items">Figma · Adobe Illustrator · Photoshop · Layout</span>
+        </div>
+        <div class="skill-group">
+          <span class="skill-cat">Languages</span>
+          <span class="skill-items">English (fluent) · Mandarin Chinese (conversational)</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top: 2.5rem;">
+      <a href="https://drive.google.com/file/d/1D2Qj41TE0HcuvVMeKMM9Jotljh8YWJFF/view" target="_blank" rel="noopener" style="font-size: 0.8rem; font-weight: 400; border-bottom: 1px solid var(--black); padding-bottom: 0.1rem; color: var(--black); transition: color 0.15s;">
+        Download resume ↗
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- INSPIRATION -->
+<div class="inspo-section reveal">
+  <p class="section-eyebrow">What I'm drawn to</p>
+  <div class="inspo-grid">
+    <div class="inspo-cell">
+      <!-- <img src="inspo-1.jpg" alt="inspiration"> -->
+      Add image
+    </div>
+    <div class="inspo-cell">Add image</div>
+    <div class="inspo-cell">Add image</div>
+  </div>
+  <p class="inspo-caption">
+    Growing up between China and the US, I'm drawn to things that carry cultural memory without being obvious about it — Muji's quiet restraint, Kinfolk's attention to the everyday, Gu Eileen's ability to reframe difficulty as clarity. These things shape how I approach a brief more than any single project does.
+  </p>
+</div>
+
+<footer>
+  <span>Tiffany Tan — Industrial Design</span>
+  <span>© 2025</span>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

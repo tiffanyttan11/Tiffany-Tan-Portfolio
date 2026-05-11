@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — Tiffany Tan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.project-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--grey-line);
+  min-height: 520px;
+}
+
+.project-detail.flip { direction: rtl; }
+.project-detail.flip > * { direction: ltr; }
+
+.project-images {
+  background: #efefef;
+  min-height: 480px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.project-images .img-main {
+  flex: 2;
+  background: #e8e8e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+}
+
+.project-images .img-secondary {
+  flex: 1;
+  background: #e2e2e2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+}
+
+.project-content {
+  padding: 4rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.project-number {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--grey-light);
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
+
+.project-cat {
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.project-title {
+  font-family: var(--serif);
+  font-size: clamp(1.8rem, 2.8vw, 2.8rem);
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  margin-bottom: 1.5rem;
+}
+
+.project-brief {
+  font-size: 0.875rem;
+  color: var(--grey-dark);
+  line-height: 1.9;
+  font-weight: 300;
+}
+
+.project-brief p + p { margin-top: 1rem; }
+
+.project-meta {
+  margin-top: 2.5rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--grey-line);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.meta-item {}
+
+.meta-label {
+  font-size: 0.62rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  font-weight: 400;
+  margin-bottom: 0.35rem;
+}
+
+.meta-value {
+  font-size: 0.8rem;
+  color: var(--black);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.work-tags { margin-top: 1.5rem; }
+
+@media (max-width: 768px) {
+  .project-detail, .project-detail.flip { grid-template-columns: 1fr; direction: ltr; }
+  .project-detail.flip > * { direction: ltr; }
+  .project-content { padding: 2.5rem 1.25rem; }
+  .project-images { min-height: 280px; }
+  .project-meta { grid-template-columns: 1fr; gap: 1rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Tiffany Tan</a>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header reveal">
+  <p class="page-header-eyebrow">Selected work</p>
+  <h1 class="page-header-title">Five projects.<br><em>One direction.</em></h1>
+</div>
+
+<!-- 01 KFI -->
+<div class="project-detail reveal" id="kfi">
+  <div class="project-images">
+    <div class="img-main">Add main image</div>
+    <div class="img-secondary">Add detail image</div>
+  </div>
+  <div class="project-content">
+    <div>
+      <p class="project-number">01 / 05</p>
+      <p class="project-cat">Industry · Furniture · DFM</p>
+      <h2 class="project-title">KFI Studios</h2>
+      <div class="project-brief">
+        <p>Selected for production out of an entire studio class — the only concept to move forward. KFI is an industry-sponsored project where the brief asked students to design a piece of commercial furniture from concept through presentation.</p>
+        <p>My concept was chosen by KFI leadership and I'm now actively collaborating with their team on design-for-manufacturing refinements. This is a real product going to market, not a student exercise.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag featured">Selected for production</span>
+        <span class="tag">Furniture design</span>
+        <span class="tag">Industry collaboration</span>
+        <span class="tag">DFM</span>
+      </div>
+    </div>
+    <div class="project-meta">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">Fall 2025</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo designer</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Tools</p>
+        <p class="meta-value">SolidWorks · KeyShot · Figma</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Status</p>
+        <p class="meta-value">In production</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 02 HERE -->
+<div class="project-detail flip reveal" id="here">
+  <div class="project-images">
+    <div class="img-main">Add main image</div>
+    <div class="img-secondary">Add detail image</div>
+  </div>
+  <div class="project-content">
+    <div>
+      <p class="project-number">02 / 05</p>
+      <p class="project-cat">Product · Wearable · UX</p>
+      <h2 class="project-title">here</h2>
+      <div class="project-brief">
+        <p>A screenless clip-on audio device designed for Gen Z users who want to wind down without a screen. The insight came from user research: people reach for their phone at night not because they want to — because there's no satisfying alternative.</p>
+        <p>here removes that friction. No display, no notifications — just a physical object that plays sound and disappears into the nightstand. Research-led from interviews through hardware exploration, CAD, and final renders.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Wearable technology</span>
+        <span class="tag">User research</span>
+        <span class="tag">SolidWorks</span>
+        <span class="tag">KeyShot</span>
+        <span class="tag">Figma</span>
+      </div>
+    </div>
+    <div class="project-meta">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2024 – 2025</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo designer</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Tools</p>
+        <p class="meta-value">SolidWorks · KeyShot · Figma</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Type</p>
+        <p class="meta-value">Academic / Concept</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 03 MONI -->
+<div class="project-detail reveal" id="moni">
+  <div class="project-images">
+    <div class="img-main">Add main image</div>
+    <div class="img-secondary">Add detail image</div>
+  </div>
+  <div class="project-content">
+    <div>
+      <p class="project-number">03 / 05</p>
+      <p class="project-cat">Furniture · Material · Concept</p>
+      <h2 class="project-title">Moni</h2>
+      <div class="project-brief">
+        <p>A furniture-grade cat tree that doesn't look like one. The brief was self-initiated: why do objects designed for pets feel like they don't belong in the same room as human things?</p>
+        <p>Moni answers that with structural clarity and material honesty — the same principles that make a good bookshelf good. Warmth without decoration. Presence without apology.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Furniture design</span>
+        <span class="tag">Material exploration</span>
+        <span class="tag">Self-initiated</span>
+      </div>
+    </div>
+    <div class="project-meta">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2024</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo designer</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Tools</p>
+        <p class="meta-value">SolidWorks · KeyShot</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Type</p>
+        <p class="meta-value">Academic / Concept</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 04 FRESH -->
+<div class="project-detail flip reveal" id="fresh">
+  <div class="project-images">
+    <div class="img-main">Add main image</div>
+    <div class="img-secondary">Add detail image</div>
+  </div>
+  <div class="project-content">
+    <div>
+      <p class="project-number">04 / 05</p>
+      <p class="project-cat">Branding · Visual Identity</p>
+      <h2 class="project-title">Fresh 汁</h2>
+      <div class="project-brief">
+        <p>Full brand identity for a small business — logo design, visual language, and a social media system that scales. The client wanted something that felt both modern and culturally rooted.</p>
+        <p>Growing up between China and the US, I know what it feels like when cultural references get flattened. This project was an exercise in holding both sides without choosing one — letting the tension be the identity.</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Brand identity</span>
+        <span class="tag">Logo design</span>
+        <span class="tag">Illustrator</span>
+        <span class="tag">Figma</span>
+        <span class="tag">Freelance</span>
+      </div>
+    </div>
+    <div class="project-meta">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2022 – 2023</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo designer</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Tools</p>
+        <p class="meta-value">Illustrator · Figma · Photoshop</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Type</p>
+        <p class="meta-value">Client / Freelance</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 05 ESSENCE & EMBER -->
+<div class="project-detail reveal" id="essence">
+  <div class="project-images">
+    <div class="img-main">Add main image</div>
+    <div class="img-secondary">Add detail image</div>
+  </div>
+  <div class="project-content">
+    <div>
+      <p class="project-number">05 / 05</p>
+      <p class="project-cat">Product · Scent · Form study</p>
+      <h2 class="project-title">Essence & Ember</h2>
+      <div class="project-brief">
+        <p>A concept exploration in form language and sensory design. The prompt was open — design an object around a sensory experience — which made it harder, not easier.</p>
+        <p>The result is an exercise in restraint. Every decision was about removing, not adding: what does the form need to say, and what should it leave alone?</p>
+      </div>
+      <div class="work-tags">
+        <span class="tag">Product design</span>
+        <span class="tag">Form study</span>
+        <span class="tag">Concept</span>
+      </div>
+    </div>
+    <div class="project-meta">
+      <div class="meta-item">
+        <p class="meta-label">Year</p>
+        <p class="meta-value">2024</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Role</p>
+        <p class="meta-value">Solo designer</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Tools</p>
+        <p class="meta-value">SolidWorks · KeyShot</p>
+      </div>
+      <div class="meta-item">
+        <p class="meta-label">Type</p>
+        <p class="meta-value">Academic / Concept</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <span>Tiffany Tan — Industrial Design</span>
+  <span>© 2025</span>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>

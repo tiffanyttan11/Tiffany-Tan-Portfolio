@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Tiffany Tan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<style>
+.contact-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-bottom: 1px solid var(--grey-line);
+  min-height: 60vh;
+}
+
+.contact-left {
+  padding: 5rem 2.5rem;
+  border-right: 1px solid var(--grey-line);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.contact-right {
+  padding: 5rem 3rem;
+}
+
+.availability {
+  margin-top: 2rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--grey-line);
+}
+
+.availability-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-right: 0.5rem;
+  vertical-align: middle;
+  animation: pulse 2.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.35; }
+}
+
+.availability-text {
+  font-size: 0.78rem;
+  color: var(--grey-dark);
+  font-weight: 400;
+}
+
+.availability-note {
+  margin-top: 0.4rem;
+  font-size: 0.72rem;
+  color: var(--grey-mid);
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.contact-detail-block {
+  margin-bottom: 3.5rem;
+}
+
+.contact-detail-block:last-child { margin-bottom: 0; }
+
+.contact-detail-eyebrow {
+  font-size: 0.63rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--grey-light);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+}
+
+.contact-detail-value {
+  font-size: 0.9rem;
+  color: var(--black);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.contact-detail-value a {
+  border-bottom: 1px solid var(--grey-line);
+  padding-bottom: 0.1rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.contact-detail-value a:hover {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+@media (max-width: 768px) {
+  .contact-main { grid-template-columns: 1fr; min-height: auto; }
+  .contact-left { border-right: none; padding: 3rem 1.25rem; border-bottom: 1px solid var(--grey-line); }
+  .contact-right { padding: 3rem 1.25rem; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-name">Tiffany Tan</a>
+  <ul class="nav-links">
+    <li><a href="work.html">Work</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-header reveal">
+  <p class="page-header-eyebrow">Contact</p>
+  <h1 class="page-header-title">Let's make something <em>real.</em></h1>
+</div>
+
+<div class="contact-main">
+
+  <div class="contact-left reveal">
+    <div>
+      <p class="about-body">
+        Open to internships, studio collaborations, and honest conversations about design. Based in Phoenix — available wherever the work is worth going.
+      </p>
+      <p class="about-body" style="margin-top: 1rem; color: var(--grey-mid);">
+        I'm particularly interested in product and furniture studios that care about how objects live in the world alongside people — not just how they look in a render.
+      </p>
+    </div>
+
+    <div class="availability">
+      <span class="availability-dot"></span>
+      <span class="availability-text">Available for internships</span>
+      <p class="availability-note">Currently a junior at ASU, graduating 2027.<br>Open to summer + semester opportunities.</p>
+    </div>
+  </div>
+
+  <div class="contact-right reveal">
+
+    <div class="contact-detail-block">
+      <p class="contact-detail-eyebrow">Email</p>
+      <p class="contact-detail-value">
+        <a href="mailto:tiffanyttan11@gmail.com">tiffanyttan11@gmail.com</a>
+      </p>
+    </div>
+
+    <div class="contact-detail-block">
+      <p class="contact-detail-eyebrow">LinkedIn</p>
+      <p class="contact-detail-value">
+        <a href="https://www.linkedin.com/in/tingting-tan-10891b257/" target="_blank" rel="noopener">Tingting Tan ↗</a>
+      </p>
+    </div>
+
+    <div class="contact-detail-block">
+      <p class="contact-detail-eyebrow">Instagram</p>
+      <p class="contact-detail-value">
+        <a href="https://www.instagram.com/tiffdesign/" target="_blank" rel="noopener">@tiffdesign ↗</a>
+      </p>
+    </div>
+
+    <div class="contact-detail-block">
+      <p class="contact-detail-eyebrow">Resume</p>
+      <p class="contact-detail-value">
+        <a href="https://drive.google.com/file/d/1D2Qj41TE0HcuvVMeKMM9Jotljh8YWJFF/view" target="_blank" rel="noopener">Download PDF ↗</a>
+      </p>
+    </div>
+
+    <div class="contact-detail-block">
+      <p class="contact-detail-eyebrow">Based in</p>
+      <p class="contact-detail-value" style="color: var(--grey-dark); font-weight: 300;">Phoenix, Arizona</p>
+    </div>
+
+  </div>
+</div>
+
+<footer>
+  <span>Tiffany Tan — Industrial Design</span>
+  <span>© 2025</span>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
