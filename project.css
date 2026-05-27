@@ -229,6 +229,21 @@
   color: var(--accent);
 }
 
+/* Tall poster / long-form image — centered with side whitespace */
+.img-poster {
+  padding: 4rem 12%;
+  border-top: 1px solid var(--grey-line);
+  background: #f7f7f7;
+  display: flex;
+  justify-content: center;
+}
+
+.img-poster img {
+  width: 100%;
+  max-width: 560px;
+  display: block;
+}
+
 /* ── PROJECT NAV ── */
 .project-nav {
   display: flex;
