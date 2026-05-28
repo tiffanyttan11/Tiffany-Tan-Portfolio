@@ -78,6 +78,10 @@
   font-weight: 400;
 }
 
+.img-full.full-breathe img {
+  object-fit: contain;
+}
+
 /* ── IMAGE BLOCKS ── */
 
 /* Full width — bleeds edge to edge */
