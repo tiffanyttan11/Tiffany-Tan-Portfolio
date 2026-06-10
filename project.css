@@ -1,26 +1,14 @@
 /* ══════════════════════════════════
    PROJECT CASE STUDY
-   Centered text, sticky sidebar,
-   full-bleed images
+   Fixed sidebar, centered text,
+   edge-to-edge images
    ══════════════════════════════════ */
 
-:root {
-  --sidebar-w: 140px;
-  --sidebar-gap: 3rem;
-}
-
-/* ── CENTERED CONTAINER ── */
-.centered {
-  max-width: 780px;
-  margin: 0 auto;
-  padding-left: 2.5rem;
-  padding-right: 2.5rem;
-}
-
-/* ── HERO ── */
+/* ── HERO — centered ── */
 .project-hero {
-  padding-top: 8rem;
-  padding-bottom: 3rem;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 8rem 2.5rem 3rem;
 }
 
 .back-link {
@@ -59,7 +47,6 @@
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  margin-bottom: 1rem;
 }
 
 .meta-row {
@@ -78,33 +65,25 @@
   color: var(--grey-mid);
 }
 
-/* ── MAIN LAYOUT ── */
-.project-layout {
-  display: grid;
-  grid-template-columns: var(--sidebar-w) 1fr;
-  gap: var(--sidebar-gap);
-  max-width: 920px;
-  margin: 0 auto;
-  padding: 0 2.5rem;
-  align-items: start;
-}
-
-/* ── SIDE NAV — sticky + above images ── */
+/* ── SIDE NAV — fixed on the left, always visible, above everything ── */
 .side-nav {
-  position: sticky;
-  top: 6rem;
+  position: fixed;
+  left: 2.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 130px;
   border: 1px solid var(--grey-line);
   border-radius: 4px;
   padding: 1.25rem 0;
-  align-self: start;
-  z-index: 10;
+  z-index: 20;
   background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
 }
 
 .side-nav a {
   display: block;
-  padding: 0.5rem 1.25rem;
-  font-size: 0.78rem;
+  padding: 0.45rem 1.25rem;
+  font-size: 0.76rem;
   color: var(--grey-mid);
   font-weight: 400;
   letter-spacing: 0.02em;
@@ -114,12 +93,11 @@
 .side-nav a:hover { color: var(--black); }
 .side-nav a.active { color: var(--black); font-weight: 500; }
 
-/* ── CONTENT COLUMN ── */
-.project-content { min-width: 0; }
-
-/* ── SECTION BLOCKS ── */
+/* ── TEXT BLOCKS — centered with padding ── */
 .section-block {
-  padding: 4rem 0;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 4rem 2.5rem;
   scroll-margin-top: 5rem;
 }
 
@@ -169,7 +147,11 @@
 .challenge-statement em { font-style: italic; color: var(--accent); }
 
 /* ── PULL QUOTE ── */
-.pull-quote { padding: 3rem 0; }
+.pull-quote {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 3rem 2.5rem;
+}
 
 .pull-quote blockquote {
   font-family: var(--serif);
@@ -184,64 +166,48 @@
 .pull-quote blockquote em { color: var(--accent); }
 
 /* ══════════════════════════════════
-   FULL-BLEED IMAGES
-   Break out of content column to
-   span 100vw. Sidebar floats above.
+   IMAGES — edge to edge, no padding
+   Just full width of the page.
    ══════════════════════════════════ */
 
 .img-bleed {
-  width: 100vw;
-  position: relative;
-  left: calc(-1 * (var(--sidebar-w) + var(--sidebar-gap) + 2.5rem));
-  margin: 2.5rem 0;
+  width: 100%;
 }
 
 .img-bleed img {
   width: 100%;
   display: block;
-  max-height: 85vh;
-  object-fit: contain;
 }
 
 .img-bleed-two {
-  width: 100vw;
-  position: relative;
-  left: calc(-1 * (var(--sidebar-w) + var(--sidebar-gap) + 2.5rem));
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 4px;
-  margin: 2.5rem 0;
 }
 
 .img-bleed-two img {
   width: 100%;
   display: block;
-  aspect-ratio: 16/10;
   object-fit: cover;
-  max-height: 55vh;
 }
 
 .img-bleed-three {
-  width: 100vw;
-  position: relative;
-  left: calc(-1 * (var(--sidebar-w) + var(--sidebar-gap) + 2.5rem));
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 4px;
-  margin: 2.5rem 0;
 }
 
 .img-bleed-three img {
   width: 100%;
   display: block;
-  aspect-ratio: 1/1;
   object-fit: cover;
 }
 
 /* Tall poster — centered with whitespace */
 .img-poster {
-  padding: 3rem 8%;
-  margin: 2rem 0;
+  padding: 3rem 12%;
   background: #f7f7f7;
   display: flex;
   justify-content: center;
@@ -253,42 +219,15 @@
   display: block;
 }
 
-/* Contained — padded background */
-.img-contained {
-  padding: 2rem;
-  margin: 2rem 0;
-  background: #f7f7f7;
-}
-
-.img-contained img {
-  max-width: 100%;
-  display: block;
-  margin: 0 auto;
-}
-
-.img-contained.two {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
-.img-contained.three {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 1.5rem;
-  align-items: start;
-}
-
 /* ── PROJECT NAV ── */
 .project-nav {
+  max-width: 720px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 2.5rem 2.5rem;
   border-top: 1px solid var(--grey-line);
-  max-width: 780px;
-  margin: 0 auto;
 }
 
 .project-nav-back,
@@ -305,36 +244,32 @@
 
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
-  .project-layout {
-    grid-template-columns: 1fr;
-    padding: 0 1.25rem;
-  }
   .side-nav {
-    position: relative;
-    top: 0;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: none;
+    width: 100%;
     display: flex;
-    flex-wrap: wrap;
+    justify-content: center;
     gap: 0;
-    padding: 1rem 0;
+    padding: 0.75rem 0;
     border: none;
-    border-bottom: 1px solid var(--grey-line);
-    z-index: auto;
-    background: var(--white);
+    border-top: 1px solid var(--grey-line);
+    border-radius: 0;
+    z-index: 20;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(10px);
   }
-  .side-nav a { padding: 0.4rem 0.75rem; font-size: 0.72rem; }
-
-  .img-bleed,
-  .img-bleed-two,
-  .img-bleed-three {
-    left: -1.25rem;
-  }
+  .side-nav a { padding: 0.4rem 0.65rem; font-size: 0.68rem; }
 }
 
 @media (max-width: 768px) {
   .project-hero { padding: 7rem 1.25rem 2.5rem; }
-  .centered { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .section-block { padding: 2.5rem 0; }
+  .section-block { padding: 2.5rem 1.25rem; }
+  .pull-quote { padding: 2rem 1.25rem; }
   .project-nav { padding: 2rem 1.25rem; }
   .img-bleed-two, .img-bleed-three { grid-template-columns: 1fr; }
-  .img-contained.two, .img-contained.three { grid-template-columns: 1fr; }
 }
