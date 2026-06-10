@@ -199,6 +199,8 @@
 .img-bleed img {
   width: 100%;
   display: block;
+  max-height: 85vh;
+  object-fit: contain;
 }
 
 .img-bleed-two {
@@ -216,6 +218,7 @@
   display: block;
   aspect-ratio: 16/10;
   object-fit: cover;
+  max-height: 55vh;
 }
 
 .img-bleed-three {
