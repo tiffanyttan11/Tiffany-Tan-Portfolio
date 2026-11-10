@@ -16,6 +16,7 @@
   --gap-rail: 5.7vw;    /* space between images and the vertical line */
   --rail-width: 18.2vw; /* width of the right column */
   --pad-right: 5.5vw;   /* space right of the bio and nav */
+  --nav-lift: 29vh;     /* how far the current page's link rises */
 }
  
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -143,17 +144,18 @@ img { display: block; width: 100%; }
 .site-nav a { transition: opacity 0.2s; }
 .site-nav a:hover { opacity: 0.45; }
  
-/* Current page: bold, and lifted up (links above it move up with it) */
+/* Current page: bold, and lifted to the middle of the line
+   (links above it move up with it, links below stay at the bottom) */
 .site-nav a[aria-current="page"] {
   font-weight: 700;
-  margin-bottom: 0.9rem;
-  animation: nav-lift 0.6s cubic-bezier(0.2, 0.6, 0.2, 1) both;
+  margin-bottom: var(--nav-lift);
+  animation: nav-lift 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
 }
 .site-nav a[aria-current="page"]:hover { opacity: 1; }
  
 @keyframes nav-lift {
   from { margin-bottom: 0; }
-  to   { margin-bottom: 0.9rem; }
+  to   { margin-bottom: var(--nav-lift); }
 }
  
 @media (prefers-reduced-motion: reduce) {
@@ -191,6 +193,21 @@ img { display: block; width: 100%; }
   line-height: 1.5;
   color: var(--muted);
 }
+ 
+/* ---------- Simple footer: email + copyright (work, extras, about) ---------- */
+ 
+.site-footer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.45rem;
+  padding: 1rem var(--pad-right) 2.6rem var(--pad-left);
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+ 
+.site-footer a { transition: color 0.2s; }
+.site-footer a:hover { color: var(--ink); }
  
 /* ---------- Small screens ---------- */
  
@@ -257,6 +274,8 @@ img { display: block; width: 100%; }
     flex-direction: column;
     margin-top: 1rem;
   }
+ 
+  .site-footer { padding: 0 1.25rem 2rem; }
  
   .stats { grid-template-columns: repeat(2, 1fr); padding: 0; }
   .stat { padding: 1.4rem 1.25rem; }
