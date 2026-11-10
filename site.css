@@ -126,6 +126,8 @@ img { display: block; width: 100%; }
   line-height: 1.42;
 }
  
+.bio p + p { margin-top: 1.4em; }
+ 
 .bio em {
   font-family: var(--serif);
   font-style: italic;
@@ -193,6 +195,92 @@ img { display: block; width: 100%; }
   line-height: 1.5;
   color: var(--muted);
 }
+ 
+/* ---------- Extras: album stacks ---------- */
+ 
+.albums {
+  --stack-h: clamp(240px, 27vw, 440px);   /* height of every album */
+  display: flex;
+  flex-direction: column;
+  gap: 7rem;
+  padding: 4.6rem 0 9rem 4vw;
+  overflow-x: clip;                        /* fanned-out albums stop at the column edge */
+}
+ 
+.stack { height: var(--stack-h); }
+ 
+.stack-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  height: 100%;
+  transition: transform 0.45s ease-out;
+}
+ 
+.stack-item {
+  position: relative;
+  flex: none;
+  display: flex;
+  justify-content: flex-end;               /* tucked items show their right-hand slice */
+  height: 100%;
+  overflow: hidden;
+  background: #e9e8e5;
+  box-shadow: 6px 8px 18px rgba(0, 0, 0, 0.18);
+  transition:
+    max-width 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+    height 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+    margin 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+    transform 0.35s ease-out;
+}
+ 
+.stack-item img,
+.stack-item .ph {
+  flex: none;
+  width: auto;
+  max-width: none;
+  height: 100%;
+}
+ 
+/* Closed: first image in front, the rest peek out behind it, each a little smaller */
+.stack-item:nth-child(1) { z-index: 6; }
+.stack-item:nth-child(2) { z-index: 5; max-width: 5.4rem; height: 88%; }
+.stack-item:nth-child(3) { z-index: 4; max-width: 4.2rem; height: 76%; }
+.stack-item:nth-child(4) { z-index: 3; max-width: 4.8rem; height: 64%; }
+.stack-item:nth-child(5) { z-index: 2; max-width: 3.6rem; height: 54%; }
+.stack-item:nth-child(n+6) { z-index: 1; max-width: 3rem; height: 46%; }
+ 
+/* Open (mouse over the album, or keyboard focus): every image shows fully */
+@media (hover: hover) and (min-width: 801px) {
+  .stack-track:hover .stack-item,
+  .stack:focus-visible .stack-item {
+    max-width: 60rem;
+    height: 100%;
+  }
+  .stack-track:hover .stack-item + .stack-item,
+  .stack:focus-visible .stack-item + .stack-item { margin-left: 1.4rem; }
+ 
+  .stack-track .stack-item:hover {
+    transform: scale(1.03);
+    z-index: 10;
+  }
+}
+ 
+.stack:focus-visible { outline: 1px solid var(--ink); outline-offset: 12px; }
+ 
+/* Placeholders: grey boxes holding the space until real images go in */
+.ph {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0.8rem;
+  aspect-ratio: 3 / 4;
+  font-size: 0.7rem;
+  color: #8d8b86;
+  background: #e9e8e5;
+}
+.ph.wide { aspect-ratio: 3 / 2; }
+.stack-item:nth-child(even) .ph { background: #dddbd6; }
+.stack-item:nth-child(3n) .ph   { background: #d2cfc9; }
  
 /* ---------- Simple footer: email + copyright (work, extras, about) ---------- */
  
@@ -277,8 +365,45 @@ img { display: block; width: 100%; }
  
   .site-footer { padding: 0 1.25rem 2rem; }
  
+  .bio p + p { margin-top: 0.6em; }
+ 
+  /* Albums become swipeable rows */
+  .albums {
+    --stack-h: 62vw;
+    grid-row: 3;
+    grid-column: 1 / -1;
+    gap: 3rem;
+    padding: 0 0 4rem;
+    overflow: visible;
+  }
+  .stack {
+    margin: 0 -1.25rem;
+    padding: 0 1.25rem 1.25rem;
+    height: calc(var(--stack-h) + 1.25rem);
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-left: 1.25rem;
+    scrollbar-width: none;
+  }
+  .stack::-webkit-scrollbar { display: none; }
+  .stack-track { gap: 0.75rem; transform: none !important; }
+  .stack-item:nth-child(n) {
+    max-width: none;
+    height: 100%;
+    scroll-snap-align: start;
+    box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.14);
+  }
+ 
   .stats { grid-template-columns: repeat(2, 1fr); padding: 0; }
   .stat { padding: 1.4rem 1.25rem; }
   .stat:nth-child(3) { border-left: 0; }
   .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
+ 
+/* Touch screens wider than a phone (tablets): show albums open, since there is no hover */
+@media (hover: none) and (min-width: 801px) {
+  .stack { overflow-x: auto; scrollbar-width: none; }
+  .stack::-webkit-scrollbar { display: none; }
+  .stack-track { gap: 1.4rem; transform: none !important; }
+  .stack-item:nth-child(n) { max-width: none; height: 100%; }
 }
