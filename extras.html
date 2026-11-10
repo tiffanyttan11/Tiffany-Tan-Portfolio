@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Extras — Tiffany Tan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700&family=Source+Serif+4:ital,wght@1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+</head>
+<body>
+
+<div class="page">
+
+  <!-- LEFT: name + projects -->
+  <main class="main">
+
+    <header class="site-header">
+      <a href="index.html" class="site-name">Tiffany Tan</a>
+    </header>
+
+    <!--
+      HOW TO ADD YOUR IMAGES
+      Each grey box is a placeholder. To swap one for a real image, replace
+        <div class="ph">drawings 1</div>
+      with
+        <img src="your-file.jpg" alt="Short description">
+      Any image shape works. The first image in an album is the one on top.
+      To add more images to an album, copy a whole <figure> ... </figure> line.
+    -->
+    <section class="albums">
+
+      <!-- ALBUM: Drawings -->
+      <div class="stack" tabindex="0" aria-label="Drawings album">
+        <div class="stack-track">
+          <figure class="stack-item"><div class="ph">drawings 1</div></figure>
+          <figure class="stack-item"><div class="ph">drawings 2</div></figure>
+          <figure class="stack-item"><div class="ph">drawings 3</div></figure>
+          <figure class="stack-item"><div class="ph">drawings 4</div></figure>
+        </div>
+      </div>
+
+      <!-- ALBUM: Sketches -->
+      <div class="stack" tabindex="0" aria-label="Sketches album">
+        <div class="stack-track">
+          <figure class="stack-item"><div class="ph wide">sketches 1</div></figure>
+          <figure class="stack-item"><div class="ph">sketches 2</div></figure>
+          <figure class="stack-item"><div class="ph">sketches 3</div></figure>
+        </div>
+      </div>
+
+      <!-- ALBUM: Photography -->
+      <div class="stack" tabindex="0" aria-label="Photography album">
+        <div class="stack-track">
+          <figure class="stack-item"><div class="ph wide">photography 1</div></figure>
+          <figure class="stack-item"><div class="ph">photography 2</div></figure>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- RIGHT: line, bio, navigation (stays in place while scrolling) -->
+  <aside class="rail">
+    <div class="rail-inner">
+      <div class="bio">
+        <p>My personal art in<br>
+        addition to design!</p>
+        <p>I love what's<br>
+        already in the world<br>
+        and capturing the<br>
+        beauty of it<br>
+        through creation</p>
+      </div>
+      <nav class="site-nav" aria-label="Main">
+        <a href="work.html">work</a>
+        <a href="extras.html" aria-current="page">extras</a>
+        <a href="about.html">about</a>
+      </nav>
+    </div>
+  </aside>
+
+</div>
+
+<!-- FOOTER: email + copyright -->
+<footer class="site-footer">
+  <a href="mailto:tiffanyttan11@gmail.com">tiffanyttan11@gmail.com</a>
+  <span>© 2026</span>
+</footer>
+
+<script>
+/* If an open album is wider than the column, slide it sideways as the mouse moves */
+document.querySelectorAll('.stack').forEach(function (stack) {
+  var track = stack.querySelector('.stack-track');
+  stack.addEventListener('mousemove', function (e) {
+    if (!track.matches(':hover')) return;
+    var box = stack.getBoundingClientRect();
+    var extra = track.scrollWidth - box.width;
+    if (extra <= 0) { track.style.transform = ''; return; }
+    var t = Math.min(1, Math.max(0, (e.clientX - box.left) / box.width));
+    track.style.transform = 'translateX(' + (-extra * t) + 'px)';
+  });
+  stack.addEventListener('mouseleave', function () { track.style.transform = ''; });
+});
+</script>
+
+</body>
+</html>
