@@ -5,6 +5,7 @@
 :root {
   --ink: #111111;
   --muted: #9a9a9a;
+  --dark-grey: #4a4a4a;
   --line: #d9dce0;
   --bg: #ffffff;
  
@@ -179,6 +180,7 @@ img { display: block; width: 100%; }
   font-weight: 600;
   font-size: 1.75rem;
   line-height: 1.2;
+  color: var(--dark-grey);
 }
  
 .stat-value sup { font-size: 0.55em; }
