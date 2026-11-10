@@ -1,0 +1,220 @@
+/* =========================================================
+   site.css — new layout (home page first)
+   ========================================================= */
+
+:root {
+  --ink: #111111;
+  --muted: #9a9a9a;
+  --line: #d9dce0;
+  --bg: #ffffff;
+
+  --sans: 'Manrope', system-ui, sans-serif;
+  --serif: 'Playfair Display', Georgia, serif;
+
+  --pad-left: 5.1vw;    /* space left of the name and images */
+  --gap-rail: 5.7vw;    /* space between images and the vertical line */
+  --rail-width: 18.2vw; /* width of the right column */
+  --pad-right: 5.5vw;   /* space right of the bio and nav */
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 16px; }
+
+body {
+  font-family: var(--sans);
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+img { display: block; width: 100%; }
+
+/* ---------- Two-column page ---------- */
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--rail-width);
+}
+
+.main {
+  padding-left: var(--pad-left);
+  padding-right: var(--gap-rail);
+}
+
+/* ---------- Name (stays at the top) ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  height: 13.5rem;
+  margin-bottom: -1.6rem;          /* lets the first image tuck under the fade */
+  padding-top: 5.7rem;
+  background: linear-gradient(to bottom, var(--bg) 0%, var(--bg) 68%, rgba(255,255,255,0) 100%);
+  pointer-events: none;            /* clicks pass through the fade to the images */
+}
+
+.site-name {
+  font-size: 1.3rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  pointer-events: auto;
+}
+
+/* ---------- Projects ---------- */
+
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 6.8rem;
+  padding-bottom: 8rem;
+}
+
+.project { display: block; }
+
+.project-image {
+  aspect-ratio: 1011 / 553;
+  overflow: hidden;
+  background: #f1f1ef;
+}
+
+.project-image img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.project:hover .project-image img { transform: scale(1.02); }
+
+.project-caption {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem 1.4rem;
+  margin-top: 1.6rem;
+  font-size: 0.95rem;
+}
+
+.project-title { font-weight: 700; }
+.project-sub   { font-weight: 300; }
+
+/* ---------- Right rail: line, bio, nav (stays in place) ---------- */
+
+.rail {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 15.4vh var(--pad-right) 6.4vh 0;
+}
+
+.rail-inner {
+  height: 100%;
+  border-left: 1px solid var(--ink);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.bio {
+  font-size: 1rem;
+  line-height: 1.42;
+}
+
+.bio em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 600;
+}
+
+.site-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.55rem;
+  padding: 0 0.3rem 1.4rem 0;
+  font-size: 1.3rem;
+}
+
+.site-nav a { transition: opacity 0.2s; }
+.site-nav a:hover { opacity: 0.45; }
+
+/* ---------- Footer: accomplishments ---------- */
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid var(--line);
+  padding: 2.2rem 0 7rem;
+  background: var(--bg);
+}
+
+.stat { padding: 1.5rem 1.9rem; }
+.stat + .stat { border-left: 1px solid var(--line); }
+
+.stat-value {
+  font-family: var(--serif);
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.stat-value sup { font-size: 0.55em; }
+
+.stat-label {
+  margin-top: 0.35rem;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* ---------- Small screens ---------- */
+
+@media (max-width: 800px) {
+  .page { display: flex; flex-direction: column; }
+
+  .main { display: contents; }
+
+  .site-header {
+    order: 1;
+    height: auto;
+    margin: 0;
+    padding: 1.5rem 1.25rem 1.25rem;
+    background: var(--bg);
+  }
+
+  .rail {
+    order: 2;
+    position: static;
+    height: auto;
+    padding: 0 1.25rem 2rem;
+  }
+
+  .rail-inner {
+    border-left: 0;
+    align-items: flex-start;
+    text-align: left;
+    gap: 1.25rem;
+  }
+
+  .bio br { display: none; }
+
+  .site-nav {
+    flex-direction: row;
+    gap: 1.5rem;
+    padding: 0;
+    font-size: 1.05rem;
+  }
+
+  .projects {
+    order: 3;
+    gap: 3.5rem;
+    padding: 0 1.25rem 4rem;
+  }
+
+  .stats { grid-template-columns: repeat(2, 1fr); padding: 0; }
+  .stat:nth-child(3) { border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
+}
