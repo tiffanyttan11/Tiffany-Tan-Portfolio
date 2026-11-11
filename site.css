@@ -197,6 +197,7 @@ img { display: block; width: 100%; }
 /* ---------- Extras: album stacks ---------- */
  
 .albums {
+  --zoom: 1.42;                            /* how much a clicked image enlarges */
   --stack-h: clamp(170px, min(21vw, 36vh), 360px);   /* height of every album: scales with screen width AND height */
   display: flex;
   flex-direction: column;
@@ -250,17 +251,55 @@ img { display: block; width: 100%; }
 /* Open (mouse over the album, or keyboard focus): every image shows fully */
 @media (hover: hover) and (min-width: 801px) {
   .stack-track:hover .stack-item,
-  .stack:focus-visible .stack-item {
+  .stack:focus-visible .stack-item,
+  .stack.is-active .stack-item {
     max-width: 60rem;
     height: 100%;
+    cursor: zoom-in;
   }
   .stack-track:hover .stack-item + .stack-item,
-  .stack:focus-visible .stack-item + .stack-item { margin-left: 1.4rem; }
+  .stack:focus-visible .stack-item + .stack-item,
+  .stack.is-active .stack-item + .stack-item { margin-left: 1.4rem; }
  
   .stack-track .stack-item:hover {
     transform: scale(1.03);
     z-index: 10;
   }
+ 
+  /* Clicked image: the page dims and the image enlarges in place */
+  .dim {
+    position: fixed;
+    inset: 0;
+    z-index: 50;
+    background: rgba(0, 0, 0, 0.42);
+    opacity: 0;
+    pointer-events: none;            /* clicks still reach the images underneath */
+    transition: opacity 0.35s ease;
+  }
+  .dim.is-on { opacity: 1; }
+ 
+  .stack.is-active {
+    position: relative;
+    z-index: 60;                     /* lifts this album above the dimmed page */
+  }
+  .stack.is-active .stack-item {
+    filter: brightness(0.58);        /* same darkness as the rest of the page */
+    transition:
+      max-width 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+      height 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+      margin 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
+      transform 0.45s cubic-bezier(0.2, 0.6, 0.2, 1),
+      filter 0.35s ease;
+  }
+  .stack.is-active .stack-item.is-focused {
+    filter: none;
+    transform: scale(var(--zoom));
+    z-index: 20;
+    cursor: default;
+    box-shadow: 10px 14px 34px rgba(0, 0, 0, 0.3);
+  }
+  .stack.is-active .stack-item.is-focused:first-child { transform-origin: left center; }
+  .stack.is-active .stack-item.is-focused:last-child  { transform-origin: right center; }
 }
  
 .stack:focus-visible { outline: 1px solid var(--ink); outline-offset: 12px; }
