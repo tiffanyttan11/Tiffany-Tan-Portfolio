@@ -1,28 +1,28 @@
 /* =========================================================
    site.css — new layout (home page first)
    ========================================================= */
- 
+
 :root {
   --ink: #111111;
   --muted: #9a9a9a;
   --dark-grey: #4a4a4a;
   --line: #d9dce0;
   --bg: #ffffff;
- 
+
   --sans: 'Manrope', system-ui, sans-serif;
   --serif: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
- 
+
   --pad-left: 5.1vw;    /* space left of the name and images */
   --gap-rail: 5.7vw;    /* space between images and the vertical line */
   --rail-width: 18.2vw; /* width of the right column */
   --pad-right: 5.5vw;   /* space right of the bio and nav */
   --nav-lift: 29vh;     /* how far the current page's link rises */
 }
- 
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
- 
+
 html { font-size: 16px; }
- 
+
 body {
   font-family: var(--sans);
   font-weight: 300;
@@ -30,24 +30,24 @@ body {
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
 }
- 
+
 a { color: inherit; text-decoration: none; }
 img { display: block; width: 100%; }
- 
+
 /* ---------- Two-column page ---------- */
- 
+
 .page {
   display: grid;
   grid-template-columns: minmax(0, 1fr) var(--rail-width);
 }
- 
+
 .main {
   padding-left: var(--pad-left);
   padding-right: var(--gap-rail);
 }
- 
+
 /* ---------- Name (stays at the top) ---------- */
- 
+
 .site-header {
   position: sticky;
   top: 0;
@@ -57,38 +57,38 @@ img { display: block; width: 100%; }
   padding-top: 1.8rem;             /* how far down the name sits */
   background: var(--bg);
 }
- 
+
 .site-name {
   font-size: 1.3rem;
   font-weight: 400;
   letter-spacing: -0.01em;
 }
- 
+
 /* ---------- Projects ---------- */
- 
+
 .projects {
   display: flex;
   flex-direction: column;
   gap: 6.8rem;
   padding-bottom: 8rem;
 }
- 
+
 .project { display: block; }
- 
+
 .project-image {
   aspect-ratio: 1011 / 553;
   overflow: hidden;
   background: #f1f1ef;
 }
- 
+
 .project-image img {
   height: 100%;
   object-fit: cover;
   transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
 }
- 
+
 .project:hover .project-image img { transform: scale(1.02); }
- 
+
 .project-caption {
   display: flex;
   flex-wrap: wrap;
@@ -96,19 +96,19 @@ img { display: block; width: 100%; }
   margin-top: 1.6rem;
   font-size: 0.95rem;
 }
- 
+
 .project-title { font-weight: 700; }
 .project-sub   { font-weight: 300; }
- 
+
 /* ---------- Right rail: line, bio, nav (stays in place) ---------- */
- 
+
 .rail {
   position: sticky;
   top: 0;
   height: 100vh;
   padding: 6.4rem var(--pad-right) 6.4vh 0;   /* first value: where the line starts (lines up with the first image) */
 }
- 
+
 .rail-inner {
   height: 100%;
   border-left: 1px solid var(--ink);
@@ -118,20 +118,20 @@ img { display: block; width: 100%; }
   align-items: flex-end;
   text-align: right;
 }
- 
+
 .bio {
   font-size: 1rem;
   line-height: 1.42;
 }
- 
+
 .bio p + p { margin-top: 1.4em; }
- 
+
 .bio em {
   font-family: var(--serif);
   font-style: italic;
   font-weight: 600;
 }
- 
+
 .site-nav {
   display: flex;
   flex-direction: column;
@@ -140,10 +140,10 @@ img { display: block; width: 100%; }
   padding: 0 0.3rem 1.4rem 0;
   font-size: 1.3rem;
 }
- 
+
 .site-nav a { transition: opacity 0.2s; }
 .site-nav a:hover { opacity: 0.45; }
- 
+
 /* Current page: bold, and lifted to the middle of the line
    (links above it move up with it, links below stay at the bottom) */
 .site-nav a[aria-current="page"] {
@@ -152,19 +152,19 @@ img { display: block; width: 100%; }
   animation: nav-lift 0.8s cubic-bezier(0.2, 0.6, 0.2, 1) both;
 }
 .site-nav a[aria-current="page"]:hover { opacity: 1; }
- 
+
 @keyframes nav-lift {
   from { margin-bottom: 0; }
   to   { margin-bottom: var(--nav-lift); }
 }
- 
+
 @media (prefers-reduced-motion: reduce) {
   .site-nav a[aria-current="page"] { animation: none; }
   .project-image img { transition: none; }
 }
- 
+
 /* ---------- Footer: accomplishments ---------- */
- 
+
 .stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -172,10 +172,10 @@ img { display: block; width: 100%; }
   padding: 2.2rem 0 7rem;
   background: var(--bg);
 }
- 
+
 .stat { padding: 1.5rem 1.9rem; }
 .stat + .stat { border-left: 1px solid var(--line); }
- 
+
 .stat-value {
   font-family: var(--serif);
   font-style: italic;
@@ -184,18 +184,18 @@ img { display: block; width: 100%; }
   line-height: 1.2;
   color: var(--dark-grey);
 }
- 
+
 .stat-value sup { font-size: 0.55em; }
- 
+
 .stat-label {
   margin-top: 0.35rem;
   font-size: 0.66rem;
   line-height: 1.5;
   color: var(--muted);
 }
- 
+
 /* ---------- Extras: album stacks ---------- */
- 
+
 .albums {
   --zoom: 1.42;                            /* how much a clicked image enlarges */
   --stack-h: clamp(170px, min(21vw, 36vh), 360px);   /* height of every album: scales with screen width AND height */
@@ -205,9 +205,9 @@ img { display: block; width: 100%; }
   padding: 3rem 0 8rem 4vw;
   overflow-x: clip;                        /* fanned-out albums stop at the column edge */
 }
- 
+
 .stack { height: var(--stack-h); }
- 
+
 .stack-track {
   display: flex;
   align-items: center;
@@ -215,7 +215,7 @@ img { display: block; width: 100%; }
   height: 100%;
   transition: transform 0.45s ease-out;
 }
- 
+
 .stack-item {
   position: relative;
   flex: none;
@@ -231,7 +231,7 @@ img { display: block; width: 100%; }
     margin 0.7s cubic-bezier(0.2, 0.6, 0.2, 1),
     transform 0.35s ease-out;
 }
- 
+
 .stack-item img,
 .stack-item .ph {
   flex: none;
@@ -239,7 +239,7 @@ img { display: block; width: 100%; }
   max-width: none;
   height: 100%;
 }
- 
+
 /* Closed: first image in front, the rest peek out behind it, each a little smaller */
 .stack-item:nth-child(1) { z-index: 6; }
 .stack-item:nth-child(2) { z-index: 5; max-width: 5.4rem; height: 88%; }
@@ -247,7 +247,7 @@ img { display: block; width: 100%; }
 .stack-item:nth-child(4) { z-index: 3; max-width: 4.8rem; height: 64%; }
 .stack-item:nth-child(5) { z-index: 2; max-width: 3.6rem; height: 54%; }
 .stack-item:nth-child(n+6) { z-index: 1; max-width: 3rem; height: 46%; }
- 
+
 /* Clicked or tapped image: the page dims */
 .dim {
   position: fixed;
@@ -259,7 +259,7 @@ img { display: block; width: 100%; }
   transition: opacity 0.35s ease;
 }
 .dim.is-on { opacity: 1; }
- 
+
 /* Tapped image (phones and tablets): an enlarged copy appears in the middle of the screen */
 .zoomed {
   position: fixed;
@@ -283,7 +283,7 @@ img { display: block; width: 100%; }
   max-height: 78vh;
   box-shadow: 8px 12px 30px rgba(0, 0, 0, 0.3);
 }
- 
+
 /* Open (mouse over the album, or keyboard focus): every image shows fully */
 @media (hover: hover) and (min-width: 801px) {
   .stack-track:hover .stack-item,
@@ -296,12 +296,12 @@ img { display: block; width: 100%; }
   .stack-track:hover .stack-item + .stack-item,
   .stack:focus-visible .stack-item + .stack-item,
   .stack.is-active .stack-item + .stack-item { margin-left: 1.4rem; }
- 
+
   .stack-track .stack-item:hover {
     transform: scale(1.03);
     z-index: 10;
   }
- 
+
   /* Clicked image (desktop): the image enlarges in place */
   .stack.is-active {
     position: relative;
@@ -326,9 +326,9 @@ img { display: block; width: 100%; }
   .stack.is-active .stack-item.is-focused:first-child { transform-origin: left center; }
   .stack.is-active .stack-item.is-focused:last-child  { transform-origin: right center; }
 }
- 
+
 .stack:focus-visible { outline: 1px solid var(--ink); outline-offset: 12px; }
- 
+
 /* Placeholders: grey boxes holding the space until real images go in */
 .ph {
   display: flex;
@@ -343,11 +343,11 @@ img { display: block; width: 100%; }
 .ph.wide { aspect-ratio: 3 / 2; }
 .stack-item:nth-child(even) .ph { background: #dddbd6; }
 .stack-item:nth-child(3n) .ph   { background: #d2cfc9; }
- 
+
 /* ---------- About ---------- */
- 
+
 .about { padding-bottom: 8rem; }
- 
+
 .about-photo {
   aspect-ratio: 1011 / 553;
   overflow: hidden;
@@ -358,14 +358,14 @@ img { display: block; width: 100%; }
   object-fit: cover;
   object-position: center top;
 }
- 
+
 .about-intro {
   display: grid;
-  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));   /* same two columns as the lists below */
   gap: 3rem 4.5rem;
   margin-top: 4.5rem;
 }
- 
+
 .about-statement {
   font-size: clamp(1.6rem, 2.4vw, 2.2rem);
   font-weight: 300;
@@ -377,29 +377,29 @@ img { display: block; width: 100%; }
   font-style: italic;
   font-weight: 600;
 }
- 
+
 .about-body {
   font-size: 0.95rem;
   line-height: 1.75;
 }
 .about-body p + p { margin-top: 1.1em; }
- 
+
 .cred-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 4rem 4.5rem;
   margin-top: 6rem;
 }
- 
+
 .cred-title {
   font-size: 0.95rem;
   font-weight: 700;
   padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--ink);
 }
- 
+
 .cred-list { list-style: none; }
- 
+
 .cred-list li {
   display: flex;
   flex-direction: column;
@@ -409,12 +409,12 @@ img { display: block; width: 100%; }
   font-size: 0.95rem;
   line-height: 1.45;
 }
- 
+
 .cred-meta {
   font-size: 0.8rem;
   color: var(--muted);
 }
- 
+
 .text-link {
   display: inline-block;
   margin-top: 3.5rem;
@@ -425,9 +425,9 @@ img { display: block; width: 100%; }
   transition: opacity 0.2s;
 }
 .text-link:hover { opacity: 0.45; }
- 
+
 /* ---------- Simple footer: email + copyright (work, extras, about) ---------- */
- 
+
 .site-footer {
   display: flex;
   flex-direction: column;
@@ -437,21 +437,21 @@ img { display: block; width: 100%; }
   font-size: 0.85rem;
   color: var(--muted);
 }
- 
+
 .site-footer a { transition: color 0.2s; }
 .site-footer a:hover { color: var(--ink); }
- 
+
 /* ---------- Small screens ---------- */
- 
+
 @media (max-width: 800px) {
   .page {
     grid-template-columns: auto 1fr;
     padding: 0 1.25rem;
   }
- 
+
   /* let the name, nav, bio and projects sit directly in the grid */
   .main, .rail, .rail-inner { display: contents; }
- 
+
   /* Row 1: name left, nav right, line underneath */
   .site-header,
   .site-nav {
@@ -463,10 +463,10 @@ img { display: block; width: 100%; }
     background: var(--bg);
     border-bottom: 1px solid var(--ink);
   }
- 
+
   .site-header { grid-column: 1; }
   .site-name   { font-size: 1.05rem; }
- 
+
   .site-nav {
     grid-column: 2;
     flex-direction: row;
@@ -476,12 +476,12 @@ img { display: block; width: 100%; }
     font-size: 0.95rem;
     font-weight: 300;
   }
- 
+
   .site-nav a[aria-current="page"] {
     margin-bottom: 0;
     animation: none;
   }
- 
+
   /* Row 2: bio */
   .bio {
     grid-row: 2;
@@ -490,7 +490,7 @@ img { display: block; width: 100%; }
     text-align: left;
   }
   .bio br { display: none; }
- 
+
   /* Row 3: projects */
   .projects {
     grid-row: 3;
@@ -498,14 +498,14 @@ img { display: block; width: 100%; }
     gap: 3.25rem;
     padding-bottom: 4rem;
   }
- 
+
   .project-caption {
     flex-direction: column;
     margin-top: 1rem;
   }
- 
+
   .site-footer { padding: 0 1.25rem 2rem; }
- 
+
   .about {
     grid-row: 3;
     grid-column: 1 / -1;
@@ -514,9 +514,9 @@ img { display: block; width: 100%; }
   .about-intro { grid-template-columns: 1fr; gap: 1.75rem; margin-top: 2.5rem; }
   .cred-grid   { grid-template-columns: 1fr; gap: 3rem; margin-top: 3.5rem; }
   .text-link   { margin-top: 2.5rem; }
- 
+
   .bio p + p { margin-top: 0.6em; }
- 
+
   /* Albums become swipeable rows */
   .albums {
     --stack-h: 62vw;
@@ -543,13 +543,13 @@ img { display: block; width: 100%; }
     scroll-snap-align: start;
     box-shadow: 3px 4px 10px rgba(0, 0, 0, 0.14);
   }
- 
+
   .stats { grid-template-columns: repeat(2, 1fr); padding: 0; }
   .stat { padding: 1.4rem 1.25rem; }
   .stat:nth-child(3) { border-left: 0; }
   .stat:nth-child(n+3) { border-top: 1px solid var(--line); }
 }
- 
+
 /* Touch screens wider than a phone (tablets): show albums open, since there is no hover */
 @media (hover: none) and (min-width: 801px) {
   .stack { overflow-x: auto; scrollbar-width: none; }
