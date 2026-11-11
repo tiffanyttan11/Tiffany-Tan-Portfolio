@@ -248,6 +248,42 @@ img { display: block; width: 100%; }
 .stack-item:nth-child(5) { z-index: 2; max-width: 3.6rem; height: 54%; }
 .stack-item:nth-child(n+6) { z-index: 1; max-width: 3rem; height: 46%; }
  
+/* Clicked or tapped image: the page dims */
+.dim {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.42);
+  opacity: 0;
+  pointer-events: none;              /* clicks and taps still reach the images underneath */
+  transition: opacity 0.35s ease;
+}
+.dim.is-on { opacity: 1; }
+ 
+/* Tapped image (phones and tablets): an enlarged copy appears in the middle of the screen */
+.zoomed {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 70;
+  transform: translate(-50%, -50%) scale(0.92);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+.zoomed.is-on {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  pointer-events: auto;
+}
+.zoomed img {
+  width: auto;
+  height: auto;
+  max-width: 92vw;
+  max-height: 78vh;
+  box-shadow: 8px 12px 30px rgba(0, 0, 0, 0.3);
+}
+ 
 /* Open (mouse over the album, or keyboard focus): every image shows fully */
 @media (hover: hover) and (min-width: 801px) {
   .stack-track:hover .stack-item,
@@ -266,18 +302,7 @@ img { display: block; width: 100%; }
     z-index: 10;
   }
  
-  /* Clicked image: the page dims and the image enlarges in place */
-  .dim {
-    position: fixed;
-    inset: 0;
-    z-index: 50;
-    background: rgba(0, 0, 0, 0.42);
-    opacity: 0;
-    pointer-events: none;            /* clicks still reach the images underneath */
-    transition: opacity 0.35s ease;
-  }
-  .dim.is-on { opacity: 1; }
- 
+  /* Clicked image (desktop): the image enlarges in place */
   .stack.is-active {
     position: relative;
     z-index: 60;                     /* lifts this album above the dimmed page */
