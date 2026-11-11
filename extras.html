@@ -111,15 +111,23 @@
     });
   });
 
-  /* Click an image to enlarge it and dim the page. Click another image to switch.
-     Click anywhere else (or press Esc) to go back to normal. Desktop only. */
+  /* Click or tap an image to enlarge it and dim the page. Choose another image to switch.
+     Click or tap anywhere else (or press Esc) to go back to normal.
+     Desktop: the image enlarges in place. Phones and tablets: an enlarged copy
+     appears in the middle of the screen. */
   var desktop = window.matchMedia('(hover: hover) and (min-width: 801px)');
+
   var dim = document.createElement('div');
   dim.className = 'dim';
   document.body.appendChild(dim);
 
+  var zoomed = document.createElement('div');
+  zoomed.className = 'zoomed';
+  document.body.appendChild(zoomed);
+
   function clearFocus() {
     dim.classList.remove('is-on');
+    zoomed.classList.remove('is-on');
     stacks.forEach(function (stack) {
       stack.classList.remove('is-active');
       if (!stack.matches(':hover')) stack.querySelector('.stack-track').style.transform = '';
@@ -130,13 +138,29 @@
   }
 
   document.addEventListener('click', function (e) {
+    if (zoomed.contains(e.target)) return;           /* tapping the enlarged copy keeps it open */
     var item = e.target.closest ? e.target.closest('.stack-item') : null;
-    if (!item || !desktop.matches) { clearFocus(); return; }
-    if (item.classList.contains('is-focused')) return;
+    if (!item) { clearFocus(); return; }
+
+    if (desktop.matches) {
+      if (item.classList.contains('is-focused')) return;
+      clearFocus();
+      item.classList.add('is-focused');
+      item.closest('.stack').classList.add('is-active');
+      dim.classList.add('is-on');
+      return;
+    }
+
+    var img = item.querySelector('img');
+    if (!img) { clearFocus(); return; }
     clearFocus();
-    item.classList.add('is-focused');
-    item.closest('.stack').classList.add('is-active');
+    var copy = document.createElement('img');
+    copy.src = img.currentSrc || img.src;
+    copy.alt = img.alt;
+    zoomed.innerHTML = '';
+    zoomed.appendChild(copy);
     dim.classList.add('is-on');
+    zoomed.classList.add('is-on');
   });
 
   document.addEventListener('keydown', function (e) {
@@ -148,5 +172,4 @@
 
 </body>
 </html>
-
 
