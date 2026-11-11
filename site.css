@@ -388,13 +388,11 @@ img { display: block; width: 100%; }
   /* let the name, nav, bio and projects sit directly in the grid */
   .main, .rail, .rail-inner { display: contents; }
  
-  /* Row 1: name left, nav right, line underneath (stays at the top) */
+  /* Row 1: name left, nav right, line underneath */
   .site-header,
   .site-nav {
     grid-row: 1;
-    position: sticky;
-    top: 0;
-    z-index: 10;
+    position: static;                /* stays at the top of the page, scrolls away with it */
     height: auto;
     margin: 0;
     padding: 1.4rem 0 1.1rem;
@@ -495,4 +493,3 @@ img { display: block; width: 100%; }
   .stack-track { gap: 1.4rem; transform: none !important; }
   .stack-item:nth-child(n) { max-width: none; height: 100%; }
 }
- 
