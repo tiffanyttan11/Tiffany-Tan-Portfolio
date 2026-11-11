@@ -52,9 +52,9 @@ img { display: block; width: 100%; }
   position: sticky;
   top: 0;
   z-index: 10;
-  height: 9.5rem;                  /* images are cut off cleanly at this edge */
-  margin-bottom: 2.4rem;
-  padding-top: 3.9rem;             /* how far down the name sits */
+  height: 4.8rem;                  /* thickness of the top bar; images are cut off cleanly at this edge */
+  margin-bottom: 1.6rem;           /* gap between the bar and the first image */
+  padding-top: 1.8rem;             /* how far down the name sits */
   background: var(--bg);
 }
  
@@ -106,7 +106,7 @@ img { display: block; width: 100%; }
   position: sticky;
   top: 0;
   height: 100vh;
-  padding: 15.4vh var(--pad-right) 6.4vh 0;
+  padding: 6.4rem var(--pad-right) 6.4vh 0;   /* first value: where the line starts (lines up with the first image) */
 }
  
 .rail-inner {
