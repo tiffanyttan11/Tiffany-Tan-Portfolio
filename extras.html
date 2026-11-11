@@ -17,7 +17,7 @@
   <main class="main">
 
     <header class="site-header">
-      <a href="index-new.html" class="site-name">Tiffany Tan</a>
+      <a href="index.html" class="site-name">Tiffany Tan</a>
     </header>
 
     <!--
@@ -35,17 +35,18 @@
       <div class="stack" tabindex="0" aria-label="Drawings album">
         <div class="stack-track">
           <figure class="stack-item"><img src="C5848E18-617D-455D-8EA1-B5BE14202772.jpeg" alt="Realistic portrait drawing"></figure>
-          <figure class="stack-item"><img src="eye.jpg" alt="Realistic unfinished portrait drawing"></figure>
-          <figure class="stack-item"><img src="taehyung.JPG" alt="Realistic of Kim Taehyung portrait drawing"></figure>
-          <figure class="stack-item"><img src="rose.jpeg" alt="Realistic pencil drawing of Rose from blackpink"></figure>
+          <figure class="stack-item"><div class="ph">drawings 2</div></figure>
+          <figure class="stack-item"><div class="ph">drawings 3</div></figure>
+          <figure class="stack-item"><div class="ph">drawings 4</div></figure>
         </div>
       </div>
 
       <!-- ALBUM: Sketches -->
       <div class="stack" tabindex="0" aria-label="Sketches album">
         <div class="stack-track">
-          <figure class="stack-item"><img src="FullSizeRender.jpeg" alt="Industrial design chair sketches"></figure>
-          <figure class="stack-item"><img src="highlight.jpeg" alt="Industrial design USB sketches"></figure>
+          <figure class="stack-item"><img src="FullSizeRender.jpeg" alt="Industrial design sketches"></figure>
+          <figure class="stack-item"><div class="ph">sketches 2</div></figure>
+          <figure class="stack-item"><div class="ph">sketches 3</div></figure>
         </div>
       </div>
 
@@ -53,9 +54,7 @@
       <div class="stack" tabindex="0" aria-label="Photography album">
         <div class="stack-track">
           <figure class="stack-item"><img src="DSC00959.JPG" alt="Photograph of a beach"></figure>
-          <figure class="stack-item"><img src="nycct.JPG" alt="Photograph of a NYC China China in the night"></figure>
-          <figure class="stack-item"><img src="kamcam.JPG" alt="Photograph of a women holding a camera"></figure>
-          <figure class="stack-item"><img src="pretty.JPG" alt="Photograph of a beach with sunshine highlighting the waters with plants"></figure>
+          <figure class="stack-item"><div class="ph">photography 2</div></figure>
         </div>
       </div>
 
@@ -75,9 +74,9 @@
         through creation</p>
       </div>
       <nav class="site-nav" aria-label="Main">
-        <a href="work-new.html">work</a>
+        <a href="work.html">work</a>
         <a href="extras.html" aria-current="page">extras</a>
-        <a href="about-new.html">about</a>
+        <a href="about.html">about</a>
       </nav>
     </div>
   </aside>
@@ -91,21 +90,61 @@
 </footer>
 
 <script>
-/* If an open album is wider than the column, slide it sideways as the mouse moves */
-document.querySelectorAll('.stack').forEach(function (stack) {
-  var track = stack.querySelector('.stack-track');
-  stack.addEventListener('mousemove', function (e) {
-    if (!track.matches(':hover')) return;
-    var box = stack.getBoundingClientRect();
-    var extra = track.scrollWidth - box.width;
-    if (extra <= 0) { track.style.transform = ''; return; }
-    var t = Math.min(1, Math.max(0, (e.clientX - box.left) / box.width));
-    track.style.transform = 'translateX(' + (-extra * t) + 'px)';
+(function () {
+  var stacks = document.querySelectorAll('.stack');
+
+  /* If an open album is wider than the column, slide it sideways as the mouse moves */
+  stacks.forEach(function (stack) {
+    var track = stack.querySelector('.stack-track');
+    stack.addEventListener('mousemove', function (e) {
+      if (!track.matches(':hover') || stack.classList.contains('is-active')) return;
+      var box = stack.getBoundingClientRect();
+      var extra = track.scrollWidth - box.width;
+      if (extra <= 0) { track.style.transform = ''; return; }
+      var t = Math.min(1, Math.max(0, (e.clientX - box.left) / box.width));
+      track.style.transform = 'translateX(' + (-extra * t) + 'px)';
+    });
+    stack.addEventListener('mouseleave', function () {
+      if (!stack.classList.contains('is-active')) track.style.transform = '';
+    });
   });
-  stack.addEventListener('mouseleave', function () { track.style.transform = ''; });
-});
+
+  /* Click an image to enlarge it and dim the page. Click another image to switch.
+     Click anywhere else (or press Esc) to go back to normal. Desktop only. */
+  var desktop = window.matchMedia('(hover: hover) and (min-width: 801px)');
+  var dim = document.createElement('div');
+  dim.className = 'dim';
+  document.body.appendChild(dim);
+
+  function clearFocus() {
+    dim.classList.remove('is-on');
+    stacks.forEach(function (stack) {
+      stack.classList.remove('is-active');
+      if (!stack.matches(':hover')) stack.querySelector('.stack-track').style.transform = '';
+    });
+    document.querySelectorAll('.stack-item.is-focused').forEach(function (item) {
+      item.classList.remove('is-focused');
+    });
+  }
+
+  document.addEventListener('click', function (e) {
+    var item = e.target.closest ? e.target.closest('.stack-item') : null;
+    if (!item || !desktop.matches) { clearFocus(); return; }
+    if (item.classList.contains('is-focused')) return;
+    clearFocus();
+    item.classList.add('is-focused');
+    item.closest('.stack').classList.add('is-active');
+    dim.classList.add('is-on');
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') clearFocus();
+  });
+  window.addEventListener('resize', clearFocus);
+})();
 </script>
 
 </body>
 </html>
+
 
