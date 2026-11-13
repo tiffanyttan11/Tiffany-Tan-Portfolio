@@ -9,54 +9,131 @@
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <link rel="stylesheet" href="project.css">
+<style>
+  /* When a sidebar link is clicked, stop the image a little below the top bar */
+  .img-bleed[id] { scroll-margin-top: 80px; }
+</style>
 </head>
 <body>
 
 <nav>
   <a href="index.html" class="nav-name">Tiffany Tan</a>
   <ul class="nav-links">
-    <li><a href="work.html">Work</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="contact.html">Contact</a></li>
+    <li><a href="work-new.html">Work</a></li>
+    <li><a href="extras.html">Extras</a></li>
+    <li><a href="about-new.html">About</a></li>
   </ul>
 </nav>
 
-<div class="project-hero reveal">
-  <div class="project-hero-meta">
-    <a href="work.html" class="back-link">← Work</a>
-    <span class="project-hero-cat">Furniture · Flat-pack · Concept</span>
-  </div>
-  <h1 class="project-hero-title">Moni</h1>
-  <p class="project-hero-sub">Cat tree designed to coexist with existing furniture </p>
-  <div class="project-hero-details">
-    <div class="detail-item"><span class="detail-label">Year</span><span class="detail-value">2024</span></div>
-    <div class="detail-item"><span class="detail-label">Role</span><span class="detail-value">Solo designer</span></div>
-    <div class="detail-item"><span class="detail-label">Tools</span><span class="detail-value">SolidWorks · KeyShot · Illustrator · PS</span></div>
-    <div class="detail-item"><span class="detail-label">Type</span><span class="detail-value">Academic / Concept</span></div>
-  </div>
+<!-- SIDEBAR — fixed, always visible.
+     Each link jumps to the image whose id matches the part after the #. -->
+<div class="side-nav">
+  <a href="#overview" class="active">Overview</a>
+  <a href="#research">Research</a>
+  <a href="#define">Define</a>
+  <a href="#ideation">Ideation</a>
+  <a href="#solution">Solution</a>
+  <a href="#takeaways">Takeaways</a>
 </div>
 
-<!-- COVER -->
-<div class="img-full reveal">
-  <img src="moni-cover.jpg" alt="Moni — cover">
+<!-- 14 IMAGES
+     Replace each src with your real file name, and update the alt text.
+     The id on an image marks where a sidebar section starts. To move a section,
+     move its id="..." onto a different image. -->
+
+<!-- OVERVIEW -->
+<div class="img-bleed" id="overview">
+  <img src="moni_0.png" alt="Moni image 1">
 </div>
 
-<div class="stats-bar reveal">
-  <div class="stat">
-    <div class="stat-value">Spring 2025</div>
-    <div class="stat-label">Design Excellence Award<br>The Design School, ASU</div>
+<div class="img-bleed">
+  <img src="moni_1.png" alt="Moni image 2">
+</div>
+
+<!-- RESEARCH -->
+<div class="img-bleed" id="research">
+  <img src="moni_2.png" alt="Moni image 3">
+</div>
+
+<div class="img-bleed">
+  <img src="moni_3.png" alt="Moni image 4">
+</div>
+
+<div class="img-bleed">
+  <img src="moni_4.png" alt="Moni image 5">
+</div>
+
+<!-- DEFINE -->
+<div class="img-bleed" id="define">
+  <img src="moni_5.png" alt="Moni image 6">
+</div>
+
+<div class="img-bleed">
+  <img src="moni_6.png" alt="Moni image 7">
+</div>
+
+<!-- IDEATION -->
+<div class="img-bleed" id="ideation">
+  <img src="moni_6.1.png" alt="Moni image 8">
+</div>
+
+<div class="img-bleed">
+  <img src="moni_7.png" alt="Moni image 9">
+</div>
+
+<div class="img-bleed">
+  <img src="moni_8.png" alt="Moni image 10">
+</div>
+
+<!-- SOLUTION -->
+<div class="img-bleed" id="solution">
+  <img src="moni_9.png" alt="Moni image 11">
+</div>
+
+<div class="img-bleed">
+  <img src="moni_10.png" alt="Moni image 12">
+</div>
+
+<div class="img-bleed">
+  <img src="moni_11.png" alt="Moni image 13">
+</div>
+
+<!-- TAKEAWAYS -->
+<div class="img-bleed" id="takeaways">
+  <img src="moni_12.png" alt="Moni image 14">
 </div>
 
 <!-- PROJECT NAV -->
-<div class="project-nav reveal">
-  <a href="here.html" class="project-nav-back">← here</a>
+<div class="project-nav">
+  <a href="ux.html" class="project-nav-back">← My Med</a>
+  <a href="here.html" class="project-nav-next">here →</a>
 </div>
 
 <footer>
   <span>Tiffany Tan — Industrial Design</span>
-  <span>© 2025</span>
+  <span>© 2026</span>
 </footer>
 
 <script src="shared.js"></script>
+<script>
+  /* Highlights the sidebar link for the section currently on screen */
+  const sections = document.querySelectorAll('.img-bleed[id]');
+  const navLinks = document.querySelectorAll('.side-nav a');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const id = entry.target.getAttribute('id');
+        const active = document.querySelector('.side-nav a[href="#' + id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '-80px 0px -50% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
 </body>
 </html>
+
