@@ -47,7 +47,7 @@
           <figure class="stack-item"><img src="FullSizeRender.jpeg" alt="Industrial design sketches"></figure>
           <figure class="stack-item"><img src="Skt.png" alt="Industrial design indoor camera sketches"></figure>
           <figure class="stack-item"><img src="highlight.jpeg" alt="Industrial design USB sketches"></figure>
-          <figure class="stack-item"><img src="raw.JPG.HEIC" alt="Industrial design Here screenless audio devive sketches"></figure>
+          <figure class="stack-item"><img src="raw.png" alt="Industrial design Here screenless audio devive sketches"></figure>
           
         </div>
       </div>
@@ -106,19 +106,56 @@
 (function () {
   var stacks = document.querySelectorAll('.stack');
 
-  /* If an open album is wider than the column, slide it sideways as the mouse moves */
+  /* ---- Calm hover settings: change these numbers to taste ---- */
+  var OPEN_DELAY  = 140;    /* ms the mouse must rest on an album before it opens */
+  var CLOSE_DELAY = 350;    /* ms after the mouse leaves before it closes */
+  var SLIDE_EASE  = 0.06;   /* how quickly a wide album slides sideways (smaller = slower, calmer) */
+  var EDGE_ZONE   = 0.22;   /* the middle of the album is a calm zone; sliding only happens toward the edges */
+
   stacks.forEach(function (stack) {
     var track = stack.querySelector('.stack-track');
+    var openTimer = null, closeTimer = null, frame = null;
+    var current = 0, target = 0;
+
+    function step() {
+      var diff = target - current;
+      if (Math.abs(diff) < 0.4) { current = target; frame = null; }
+      else { current += diff * SLIDE_EASE; frame = requestAnimationFrame(step); }
+      track.style.transform = current ? 'translateX(' + current.toFixed(1) + 'px)' : '';
+    }
+    function slideTo(x) {
+      target = x;
+      if (!frame) frame = requestAnimationFrame(step);
+    }
+    function close() {
+      if (stack.classList.contains('is-active')) return;   /* an image is enlarged: stay open */
+      stack.classList.remove('is-open');
+      slideTo(0);
+    }
+    stack._settle = function () {                           /* used when an enlarged image is closed */
+      if (!track.matches(':hover')) { clearTimeout(closeTimer); closeTimer = setTimeout(close, CLOSE_DELAY); }
+    };
+
+    track.addEventListener('mouseenter', function () {
+      clearTimeout(closeTimer);
+      clearTimeout(openTimer);
+      openTimer = setTimeout(function () { stack.classList.add('is-open'); }, OPEN_DELAY);
+    });
+    track.addEventListener('mouseleave', function () {
+      clearTimeout(openTimer);
+      clearTimeout(closeTimer);
+      closeTimer = setTimeout(close, CLOSE_DELAY);
+    });
+
+    /* If the open album is wider than the column, slide it gently as the mouse nears an edge */
     stack.addEventListener('mousemove', function (e) {
-      if (!track.matches(':hover') || stack.classList.contains('is-active')) return;
+      if (!stack.classList.contains('is-open') || stack.classList.contains('is-active')) return;
       var box = stack.getBoundingClientRect();
       var extra = track.scrollWidth - box.width;
-      if (extra <= 0) { track.style.transform = ''; return; }
-      var t = Math.min(1, Math.max(0, (e.clientX - box.left) / box.width));
-      track.style.transform = 'translateX(' + (-extra * t) + 'px)';
-    });
-    stack.addEventListener('mouseleave', function () {
-      if (!stack.classList.contains('is-active')) track.style.transform = '';
+      if (extra <= 0) { slideTo(0); return; }
+      var p = (e.clientX - box.left) / box.width;
+      var t = Math.min(1, Math.max(0, (p - EDGE_ZONE) / (1 - 2 * EDGE_ZONE)));
+      slideTo(-extra * t);
     });
   });
 
@@ -140,8 +177,10 @@
     dim.classList.remove('is-on');
     zoomed.classList.remove('is-on');
     stacks.forEach(function (stack) {
-      stack.classList.remove('is-active');
-      if (!stack.matches(':hover')) stack.querySelector('.stack-track').style.transform = '';
+      if (stack.classList.contains('is-active')) {
+        stack.classList.remove('is-active');
+        stack._settle();
+      }
     });
     document.querySelectorAll('.stack-item.is-focused').forEach(function (item) {
       item.classList.remove('is-focused');
@@ -157,6 +196,7 @@
       if (item.classList.contains('is-focused')) return;
       clearFocus();
       item.classList.add('is-focused');
+      item.closest('.stack').classList.add('is-open');
       item.closest('.stack').classList.add('is-active');
       dim.classList.add('is-on');
       return;
@@ -183,4 +223,3 @@
 
 </body>
 </html>
-
