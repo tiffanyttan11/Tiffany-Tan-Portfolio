@@ -6,9 +6,10 @@
 <title>Moni — Tiffany Tan</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="shared.css">
 <link rel="stylesheet" href="project.css">
+<link rel="stylesheet" href="project-nav.css">
 <style>
   /* When a sidebar link is clicked, stop the image a little below the top bar */
   .img-bleed[id] { scroll-margin-top: 80px; }
@@ -16,29 +17,29 @@
 </head>
 <body>
 
-<nav>
-  <a href="index.html" class="nav-name">Tiffany Tan</a>
-  <ul class="nav-links">
-    <li><a href="work-new.html">Work</a></li>
-    <li><a href="extras.html">Extras</a></li>
-    <li><a href="about-new.html">About</a></li>
-  </ul>
-</nav>
+<!-- NAME (top left, same as the main pages) -->
+<header class="pj-top">
+  <a href="index.html" class="pj-name">Tiffany Tan</a>
+</header>
 
-<!-- SIDEBAR — fixed, always visible.
-     Each link jumps to the image whose id matches the part after the #. -->
-<div class="side-nav">
-  <a href="#overview" class="active">Overview</a>
-  <a href="#research">Research</a>
-  <a href="#define">Define</a>
-  <a href="#ideation">Ideation</a>
-  <a href="#solution">Solution</a>
+<!-- RIGHT SIDE: work > this page's sections > extras, about -->
+<div class="pj-rail" role="navigation" aria-label="Main">
+  <div class="pj-current">
+    <a href="work-new.html" class="pj-link" aria-current="page">work</a>
+    <div class="pj-sections">
+      <a href="#overview" class="active">Overview</a>
+      <a href="#research">Research</a>
+      <a href="#define">Define</a>
+      <a href="#ideation">Ideation</a>
+      <a href="#solution">Solution</a>
+    </div>
+  </div>
+  <a href="extras.html" class="pj-link">extras</a>
+  <a href="about-new.html" class="pj-link">about</a>
 </div>
-
 
 <!-- HERO -->
 <div class="project-hero">
-  <a href="work-new.html" class="back-link">← Work</a>
   <h1 class="project-hero-title">Moni</h1>
   <p class="project-hero-sub">Cat Tree designed for owner and pets.</p>
 
@@ -136,14 +137,14 @@
 <script>
   /* Highlights the sidebar link for the section currently on screen */
   const sections = document.querySelectorAll('.img-bleed[id]');
-  const navLinks = document.querySelectorAll('.side-nav a');
+  const navLinks = document.querySelectorAll('.pj-sections a');
 
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         navLinks.forEach(a => a.classList.remove('active'));
         const id = entry.target.getAttribute('id');
-        const active = document.querySelector('.side-nav a[href="#' + id + '"]');
+        const active = document.querySelector('.pj-sections a[href="#' + id + '"]');
         if (active) active.classList.add('active');
       }
     });
@@ -154,4 +155,3 @@
 
 </body>
 </html>
-
