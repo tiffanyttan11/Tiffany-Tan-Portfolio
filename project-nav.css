@@ -28,7 +28,7 @@
   text-decoration: none;
 }
 
-/* ---------- Right side: work (bold, lifted) > page sections > extras, about ---------- */
+/* ---------- Right side: work (bold, lifted) > section card > extras, about ---------- */
 
 .pj-rail {
   position: fixed;
@@ -49,41 +49,40 @@
   line-height: normal;
 }
 
-/* work / extras / about */
+/* work / extras / about: quiet grey, so the page sections stand out */
 .pj-link {
   font-size: 1.3rem;
   font-weight: 300;
-  padding: 0.1rem 0.6rem;
-  margin: -0.1rem -0.6rem;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);   /* keeps the words readable over images */
-  transition: opacity 0.2s;
+  color: #b9b9b9;
+  transition: color 0.2s;
 }
-.pj-link:hover { opacity: 0.45; }
+.pj-rail a.pj-link { color: #b9b9b9; }
+.pj-rail a.pj-link:hover { color: #111111; }
 .pj-link[aria-current="page"] { font-weight: 700; }
-.pj-link[aria-current="page"]:hover { opacity: 1; }
 
-/* "work" is lifted the same distance as on the main pages; the sections hang beneath it */
+/* "work" is lifted like on the main pages; the section card hangs beneath it */
 .pj-current {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  margin-bottom: max(29vh, 12.5rem);
+  margin-bottom: max(29vh, 16.5rem);
 }
 
-/* Overview / Research / ... */
+/* Section card: Overview / Research / ... */
 .pj-sections {
   position: absolute;
-  top: calc(100% + 0.9rem);
-  right: -1rem;
+  top: calc(100% + 1.6rem);
+  right: -2.2rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
-  gap: 0.7rem;
-  padding: 0.9rem 1rem;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.92);
+  align-items: flex-start;
+  gap: 0.85rem;
+  padding: 1.2rem 2.6rem 1.2rem 1.35rem;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+  background: #ffffff;
+  text-align: left;
   white-space: nowrap;
 }
 
@@ -93,8 +92,9 @@
   color: #9a9a9a;
   transition: color 0.2s;
 }
-.pj-sections a:hover,
-.pj-sections a.active { color: #111111; }
+.pj-rail .pj-sections a { color: #9a9a9a; }
+.pj-rail .pj-sections a:hover,
+.pj-rail .pj-sections a.active { color: #111111; }
 .pj-sections a.active { font-weight: 500; }
 
 /* ---------- Small screens: name left, thin nav row right, like the main pages ---------- */
@@ -119,12 +119,8 @@
     align-items: baseline;
     gap: 1.15rem;
   }
-  .pj-link {
-    font-size: 0.95rem;
-    padding: 0;
-    margin: 0;
-    background: none;
-  }
+  .pj-link { font-size: 0.95rem; }
+  .pj-rail a.pj-link { color: #111111; }   /* on phones the row matches the main pages */
   .pj-current { margin-bottom: 0; }
   .pj-sections { display: none; }
 }
