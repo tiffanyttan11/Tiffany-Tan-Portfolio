@@ -97,6 +97,33 @@
 .pj-rail .pj-sections a.active { color: #111111; }
 .pj-sections a.active { font-weight: 500; }
 
+/* ---------- End of page: three images linking to the other projects ---------- */
+
+.pj-more {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.6rem;
+  width: 74%;
+  margin: 5.5rem 0 6.5rem 12%;
+}
+
+.pj-more a {
+  display: block;
+  aspect-ratio: 1011 / 553;
+  overflow: hidden;
+  background: #f1f1ef;
+}
+
+.pj-more img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.9s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.pj-more a:hover img { transform: scale(1.03); }
+
 /* ---------- Small screens: name left, thin nav row right, like the main pages ---------- */
 
 @media (max-width: 800px) {
@@ -123,4 +150,10 @@
   .pj-rail a.pj-link { color: #111111; }   /* on phones the row matches the main pages */
   .pj-current { margin-bottom: 0; }
   .pj-sections { display: none; }
+
+  .pj-more {
+    width: auto;
+    margin: 3rem 1.25rem 3.5rem;
+    gap: 0.4rem;
+  }
 }
